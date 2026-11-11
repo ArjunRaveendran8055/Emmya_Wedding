@@ -24,6 +24,14 @@ Import `ArjunRaveendran8055/Emmya_Wedding` at https://vercel.com/new. Use the re
 
 Use `master` as the production branch. Once the GitHub repository is connected, pushes to that branch trigger production deployments. After deployment, verify the photos, music, PDF download, directions, and RSVP from the public URL. FormSubmit recipient activation is still required for RSVP email delivery.
 
+## Sharing the invitation
+
+Share the public production domain: https://emmya-wedding.vercel.app/. Generated deployment links may display Vercel’s protected-deployment page to guests and WhatsApp’s link crawler. Keep the production domain public in Vercel’s Deployment Protection settings; preview deployments can remain protected.
+
+`index.html` includes Open Graph and social-card metadata with absolute production URLs. The share image is `public/social/emmya-manu-betrothal.png`; favicon and Apple touch icons are in `public/`. To regenerate the PNG assets on macOS, run `swift scripts/create-share-assets.swift` from the repository root. If the public domain changes, update the canonical and social URLs in `index.html`.
+
+Existing WhatsApp messages may retain the old preview. Share a new message after deployment; if necessary, use `https://emmya-wedding.vercel.app/?v=2` to request a fresh URL preview.
+
 ## Fill in the missing details
 
 Edit `src/data/weddingContent.js`. The visible “Still to add” checklist is derived from this configuration:
