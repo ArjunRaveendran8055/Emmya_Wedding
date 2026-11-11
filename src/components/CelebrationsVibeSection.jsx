@@ -73,7 +73,7 @@ function CelebrationsVibeSection({ images, bride, groom }) {
 
         <Reveal variant="fadeUp">
           <p className="mx-auto mt-4 max-w-2xl text-center font-['Cormorant_Garamond'] italic leading-relaxed text-stone-600 dark:text-stone-300" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}>
-            Glimpses of {groom} and {bride}'s journey that brought them to this joyous celebration.
+            Join {groom} and {bride} for a celebration of love, family, and God’s blessings.
           </p>
         </Reveal>
 
@@ -97,6 +97,7 @@ function CelebrationsVibeSection({ images, bride, groom }) {
                   <img
                     src={image.src}
                     alt={image.alt}
+                  style={{ objectPosition: image.position ?? "center" }}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
@@ -163,7 +164,7 @@ function CelebrationsVibeSection({ images, bride, groom }) {
               </svg>
 
               <p className="mt-5 text-center font-['Great_Vibes'] leading-relaxed text-gold-700 dark:text-gold-300" style={{ fontSize: "clamp(1.55rem, 3.5vw, 2.25rem)" }}>
-                The Love Story
+                With Love & Prayers
               </p>
 
               <p className="mt-2 text-center text-sm uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">

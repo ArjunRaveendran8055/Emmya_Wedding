@@ -1,154 +1,78 @@
-import IMG1 from "../assets/Images/IMG1.JPG.jpeg"
-import IMG2 from "../assets/Images/IMG2.JPG.jpeg"
-import IMG3 from "../assets/Images/IMG3.JPG.jpeg"
-import IMG4 from "../assets/Images/IMG4.JPG.jpeg"
-import IMG5 from "../assets/Images/IMG5.JPG.jpeg"
-import IMG6 from "../assets/Images/IMG6.JPG.jpeg"
-import IMG7 from "../assets/Images/IMG7.JPG.jpeg"
-import IMG8 from "../assets/Images/IMG8.JPG.jpeg"
-import IMG9 from "../assets/Images/IMG9.JPG.jpeg"
+// Update the optional sections here as the couple supplies their details.
+const church = "Christ The King Church, Krishnankotta"
+const churchQuery = encodeURIComponent(church)
 
 export const weddingInfo = {
-  couple: {
-    bride: "Aiswarya Rengan",
-    groom: "Arjun AR",
-  },
-  dateLabel: "May 17, 2026",
-  locationLabel: "Central Auditorium, N.Paravur",
-  targetDate: "2026-05-17T18:30:00+05:30",
-  address: "Central Auditorium, N.Paravur, Ernakulam, Kerala",
-  mapEmbed:
-    "https://www.google.com/maps?q=Central+Auditorium+N.Paravur+Ernakulam&output=embed",
-  directionsUrl: "https://maps.google.com/?q=Central+Auditorium+N.Paravur+Ernakulam+Kerala",
-  venues: [
-    {
-      label: "Marriage",
-      title: "Wedding Ceremony",
-      address: "Central Auditorium, N.Paravur, Ernakulam, Kerala",
-      mapEmbed:
-        "https://www.google.com/maps?q=Central+Auditorium+N.Paravur+Ernakulam&output=embed",
-      directionsUrl:
-        "https://maps.google.com/?q=Central+Auditorium+N.Paravur+Ernakulam+Kerala",
-    },
-    {
-      label: "Reception",
-      title: "Reception Venue",
-      address: "Treesa Garden Auditorium, Perumbadanna, N.Paravur",
-      mapEmbed:
-        "https://www.google.com/maps?q=Treesa+Garden+Auditorium+Perumbadanna+N.Paravur&output=embed",
-      directionsUrl: "https://maps.google.com/?q=Treesa+Garden+Auditorium+Perumbadanna+N.Paravur",
-    },
+  couple: { bride: "Emmya Sunny", groom: "Manu Antony" },
+  initials: "M&E",
+  eventLabel: "Betrothal",
+  dateLabel: "Saturday, 14 November 2026",
+  timeLabel: "11:30 AM onwards",
+  targetDate: "2026-11-14T11:30:00+05:30",
+  locationLabel: church,
+  verse: "What God has joined together, let no one separate.",
+  verseReference: "Matthew 19:6",
+  families: [
+    { name: "Emmya Sunny", relationship: "Daughter of", parents: "Mr. Joseph Sunny & Mrs. Anna Jasmine", home: "Kurisingal house, Krishnankotta" },
+    { name: "Manu Antony", relationship: "Son of", parents: "Mr. Antony N.A & Mrs. Mini", home: "Puthenpurakkal House, Palamattam" },
   ],
-  contact: {
-    phone: "+91 9446722008",
-    email: "arjunravi1213@gmail.com",
-  },
+  invitationUrl: "/invitations/emmya-manu-betrothal.pdf",
+  venues: [{
+    label: "Betrothal", title: church, address: church,
+    mapEmbed: `https://www.google.com/maps?q=${churchQuery}&output=embed`,
+    directionsUrl: `https://www.google.com/maps/search/?api=1&query=${churchQuery}`,
+    directionsLabel: "Search church on Google Maps",
+  }],
+  contact: { phone: "", email: "sunnyebin48@gmail.com" },
 }
 
-export const storyMoments = [
-  {
-    year: "School Days",
-    title: "Where It All Began",
-    description:
-      "Two young hearts first crossed paths during their school days—innocent, and unaware of what the future had in store.",
-  },
-  {
-    year: "A Pause",
-    title: "A Pause in the Story",
-    description:
-      "Life took them on different paths, and for a while, they went their separate ways—holding onto memories, yet growing individually.",
-  },
-  {
-    year: "Degree Days",
-    title: "Destiny Brings Them Back",
-    description:
-      "Years later, during their degree days, fate stepped in once again. What began as reconnecting turned into something deeper, stronger, and undeniable.",
-  },
-  {
-    year: "Growing Together",
-    title: "Growing Together",
-    description:
-      "Through time, distance, and life’s many ups and downs, they stood by each other—learning, growing, and choosing one another every single day.",
-  },
-  {
-    year: "Everlasts",
-    title: "A Love That Lasts",
-    description:
-      "What blossomed from friendship turned into a bond built on trust, understanding, and endless love—one that stood strong through it all.",
-  },
-  {
-    year: "Today",
-    title: "Forever Begins Now",
-    description:
-      "Today, Aiswarya and Arjun take the next step in their journey—hand in hand, as best friends and soulmates, ready to build a lifetime of love together.",
-  },
-]
+export const events = [{
+  name: "Betrothal Ceremony", date: weddingInfo.dateLabel, time: weddingInfo.timeLabel,
+  venue: church, address: church, mapUrl: weddingInfo.venues[0].directionsUrl,
+  directionsLabel: weddingInfo.venues[0].directionsLabel,
+}]
 
-export const events = [
-  {
-    name: "Wedding Ceremony",
-    date: "May 17, 2026",
-    time: "9:45 AM - 10:45 AM",
-    venue: "Central Auditorium",
-    address: "Central Auditorium, N.Paravur, Ernakulam, Kerala",
-    mapUrl: "https://maps.google.com/?q=Central+Auditorium+N.Paravur+Ernakulam",
-  },
-  {
-    name: "Reception",
-    date: "May 17, 2026",
-    time: "5:00 PM - 8:00 PM",
-    venue: "Treesa Garden Auditorium",
-    address: "Treesa Garden Auditorium, Perumbadanna, N.Paravur",
-    mapUrl: "https://maps.google.com/?q=Treesa+Garden+Auditorium+Perumbadanna+N.Paravur",
-  },
-]
+// Supply { year, title, description } objects to replace the story placeholder.
+export const storyMoments = []
+export const dressDetails = []
+// FormSubmit emails the family after the recipient activates its confirmation email.
+// Keep url empty to use the embedded form; set url to use another external form.
+export const rsvpDetails = {
+  url: "",
+  label: "Respond to the invitation",
+  submitUrl: `https://formsubmit.co/${weddingInfo.contact.email}`,
+  subject: "New RSVP — Emmya & Manu’s Betrothal",
+}
 
-export const galleryImages = [
-  {
-    src: IMG8,
-    alt: "Wedding moment 1",
-  },
-  {
-    src: IMG2,
-    alt: "Wedding moment 2",
-  },
-  {
-    src: IMG3,
-    alt: "Wedding moment 3",
-  },
-  {
-    src: IMG4,
-    alt: "Wedding moment 4",
-  },
-  {
-    src: IMG5,
-    alt: "Wedding moment 5",
-  },
-  {
-    src: IMG6,
-    alt: "Wedding moment 6",
-  },
-  {
-    src: IMG7,
-    alt: "Wedding moment 7",
-  },
-  {
-    src: IMG1,
-    alt: "Wedding moment 8",
-  },
-  {
-    src: IMG9,
-    alt: "Wedding moment 9",
-  },
-    {
-    src: IMG3,
-    alt: "Wedding moment 10",
-  },
+export const portrait = {
+  src: "/images/emmya-manu-invitation.jpg",
+  alt: "Manu Antony and Emmya Sunny, from their betrothal invitation",
+}
+// Add a slot with an empty src to show a labelled photo placeholder.
+// Browser-sized copies keep the provided originals untouched.
+export const photoSlots = [
+  { id: "embrace", label: "Together", src: "/images/emmya-manu-06.jpg", alt: "Emmya and Manu smiling at one another beneath the trees", position: "50% 40%" },
+  { id: "portrait", label: "A quiet moment", src: "/images/emmya-manu-05.jpg", alt: "Emmya resting her head on Manu’s shoulder", position: "50% 45%" },
+  { id: "garden", label: "In the garden", src: "/images/emmya-manu-04.jpg", alt: "Emmya in an orange saree with Manu standing behind her in the garden", position: "50% 45%" },
+  { id: "hills", label: "Among the hills", src: "/images/emmya-manu-01.jpg", alt: "Emmya and Manu together against misty green hills", position: "50% 70%" },
+  { id: "lakeside", label: "Hand in hand", src: "/images/emmya-manu-02.jpg", alt: "Emmya and Manu holding hands by the lake", position: "50% 65%" },
+  { id: "memory", label: "By the water", src: "/images/emmya-manu-03.jpg", alt: "Emmya and Manu sitting together beside the lake", position: "50% 65%" },
 ]
+const suppliedPhotos = photoSlots.filter((photo) => photo.src)
+export const galleryImages = suppliedPhotos.length ? suppliedPhotos : [portrait]
 
-export const dressDetails = [
-  "Pastel or neutral tones are encouraged.",
-  "Traditional or formal attire for ceremony and reception.",
-  "Comfortable footwear for dancing and walking."
+export const music = {
+  src: "/audio/a-quiet-promise.wav",
+  title: "A Quiet Promise",
+  credit: "Original synthesized piano instrumental, created for this invitation. CC0 1.0.",
+  licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+  volume: 0.3,
+}
 
-]
+export const missingDetails = [
+  { id: "story", label: "Their story", description: "Add how they met and the moments they would like to share.", missing: storyMoments.length === 0 },
+  { id: "gallery", label: "Additional photos", description: "Add the couple’s new photographs to the labelled photo slots.", missing: photoSlots.some((photo) => !photo.src) },
+  { id: "details", label: "Dress guidance", description: "Add any attire preferences or guest notes confirmed by the families.", missing: dressDetails.length === 0 },
+  { id: "rsvp", label: "RSVP details", description: "Add an RSVP contact or a link to a working response form.", missing: !rsvpDetails.url && !weddingInfo.contact.phone && !weddingInfo.contact.email },
+  { id: "contact", label: "Family contact", description: "Add a phone number or email for guest enquiries.", missing: !weddingInfo.contact.phone && !weddingInfo.contact.email },
+].filter((item) => item.missing)

@@ -1,5 +1,7 @@
+import { photoSlots } from "../data/weddingContent"
+import ContentPlaceholder from "./ContentPlaceholder"
 import { AnimatePresence, motion } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi"
 import { useAnimationSystem } from "../animations"
 import Reveal from "./Reveal"
@@ -71,6 +73,33 @@ const itemVariants = {
 function GallerySection({ images, bride, groom }) {
   const [selectedIndex, setSelectedIndex] = useState(null)
   const animations = useAnimationSystem()
+  const closeRef = useRef(null)
+  useEffect(() => {
+    if (selectedIndex === null) return
+    const previousFocus = document.activeElement
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    closeRef.current?.focus()
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setSelectedIndex(null)
+      if (event.key === "ArrowLeft") setSelectedIndex((index) => (index + images.length - 1) % images.length)
+      if (event.key === "ArrowRight") setSelectedIndex((index) => (index + 1) % images.length)
+      if (event.key === "Tab") {
+        const buttons = closeRef.current?.closest('[role="dialog"]')?.querySelectorAll("button")
+        if (!buttons?.length) return
+        const first = buttons[0], last = buttons[buttons.length - 1]
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
+      }
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => {
+      window.removeEventListener("keydown", onKeyDown)
+      document.body.style.overflow = previousOverflow
+      previousFocus?.focus()
+    }
+  }, [selectedIndex, images.length])
+
 
   const showPreviousImage = () => {
     setSelectedIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -159,6 +188,7 @@ function GallerySection({ images, bride, groom }) {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  style={{ objectPosition: image.position ?? "center" }}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -201,6 +231,13 @@ function GallerySection({ images, bride, groom }) {
             )
           })}
         </MotionDiv>
+        {photoSlots.some((slot) => !slot.src) && (
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {photoSlots.filter((slot) => !slot.src).map((slot) => (
+              <ContentPlaceholder key={slot.id} label={slot.label}>A new photograph from the couple will be added here.</ContentPlaceholder>
+            ))}
+          </div>
+        )}
       </div>
 
       <AnimatePresence mode="wait">
@@ -215,6 +252,7 @@ function GallerySection({ images, bride, groom }) {
             onClick={() => setSelectedIndex(null)}
             role="dialog"
             aria-modal="true"
+            aria-label={`Photo of ${groom} and ${bride}`}
           >
             <MotionDiv
               initial={{ scale: 0.94, opacity: 0, y: 18 }}
@@ -228,7 +266,7 @@ function GallerySection({ images, bride, groom }) {
                 <img
                   src={images[selectedIndex].src}
                   alt={images[selectedIndex].alt}
-                  className="max-h-[85vh] w-full rounded-[1.8rem] object-cover"
+                  className="max-h-[85vh] w-full rounded-[1.8rem] object-contain"
                 />
               </div>
 
@@ -237,6 +275,7 @@ function GallerySection({ images, bride, groom }) {
                 onClick={() => setSelectedIndex(null)}
                 className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur-md transition hover:bg-white/25"
                 aria-label="Close preview"
+                ref={closeRef}
               >
                 <FiX size={22} />
               </button>

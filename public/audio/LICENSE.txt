@@ -1,0 +1,8 @@
+A Quiet Promise
+Original composition and synthesized piano recording created for the Emmya & Manu invitation.
+No third-party samples or recordings are used.
+
+To the extent possible under law, the creator has waived all copyright and related or neighbouring rights to this composition and recording under CC0 1.0 Universal.
+https://creativecommons.org/publicdomain/zero/1.0/
+
+No attribution is required. Source and reproducible rendering instructions: scripts/create-piano.py.

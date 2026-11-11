@@ -4,7 +4,7 @@ import { galleryImages } from "../data/weddingContent"
 
 const MotionDiv = motion.div
 
-const marqueePhotos = galleryImages.slice(0, 5)
+const marqueePhotos = galleryImages
 
 function CupidDecor({ className = "" }) {
   return (
@@ -166,7 +166,7 @@ export default function WelcomeSection({ bride, groom, locationLabel }) {
 
         <Reveal variant="fadeUp">
           <p className="mx-auto mt-5 max-w-2xl font-['Cormorant_Garamond'] italic leading-relaxed text-stone-600 dark:text-stone-300" style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.45rem)" }}>
-            We warmly invite you to celebrate the wedding of{" "}
+            We warmly invite you to celebrate the betrothal of{" "}
             <span className="text-gold-700 dark:text-gold-300">{groom} &amp; {bride}</span>
             {" "}
             at the beautiful {locationLabel}. We look forward to sharing this
@@ -197,6 +197,7 @@ export default function WelcomeSection({ bride, groom, locationLabel }) {
               <img
                 src={photo.src}
                 alt={photo.alt}
+                  style={{ objectPosition: photo.position ?? "center" }}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 draggable={false}
                 loading="lazy"

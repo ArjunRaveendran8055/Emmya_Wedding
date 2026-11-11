@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion"
-import sitaKalyanam from "./assets/Sita Kalyanam-128kbps.mp3"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useAnimationSystem } from "./animations"
+import FamilySection from "./components/FamilySection"
+import MissingDetails from "./components/MissingDetails"
 import BackgroundHearts from "./components/BackgroundHearts"
 import CountdownSection from "./components/CountdownSection"
 import DressCodeSection from "./components/DressCodeSection"
@@ -22,11 +23,9 @@ import {
   galleryImages,
   storyMoments,
   weddingInfo,
+  music,
 } from "./data/weddingContent"
 
-const trackUrls = [
-  sitaKalyanam,
-]
 const MotionMain = motion.main
 
 function App() {
@@ -38,81 +37,40 @@ function App() {
     if (savedTheme) return savedTheme === "dark"
     return window.matchMedia("(prefers-color-scheme: dark)").matches
   })
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [musicError, setMusicError] = useState("")
   const audioRef = useRef(null)
-
-  const createAudio = (url) => {
-    const audio = new Audio(url)
-    audio.loop = true
-    audio.preload = "auto"
-    audio.volume = 0.35
-    audio.currentTime = 45
-    return audio
-  }
-
-  useEffect(() => {
-    // Remove old timer logic; handled by Loader's onFinish
-  }, [])
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark)
     window.localStorage.setItem("theme", isDark ? "dark" : "light")
   }, [isDark])
 
-
-  // Play music by default on mount
-  useEffect(() => {
-    if (isPlaying && !audioRef.current) {
-      onMusicToggle()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(
-    () => () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.src = ""
-      }
-    },
-    [],
-  )
-
   const onThemeToggle = () => setIsDark((value) => !value)
-
   const onMusicToggle = async () => {
-    if (!audioRef.current) {
-      audioRef.current = createAudio(trackUrls[0])
-    }
-
-    if (isPlaying) {
-      audioRef.current.pause()
-      setIsPlaying(false)
+    const audio = audioRef.current
+    if (!audio) return
+    setMusicError("")
+    if (!audio.paused) {
+      audio.pause()
       return
     }
-
-    for (const url of trackUrls) {
-      try {
-        if (audioRef.current.src !== url) {
-          audioRef.current.pause()
-          audioRef.current = createAudio(url)
-        }
-        await audioRef.current.play()
-        setIsPlaying(true)
-        return
-      } catch {
-        // Try the next fallback URL.
-      }
+    try {
+      await audio.play()
+    } catch {
+      setIsPlaying(false)
+      setMusicError("Music could not play. Please try again.")
     }
-
-    setIsPlaying(false)
   }
 
-  const bride = useMemo(() => weddingInfo.couple.bride, [])
-  const groom = useMemo(() => weddingInfo.couple.groom, [])
+  const { bride, groom } = weddingInfo.couple
 
   return (
     <>
+      <audio ref={audioRef} src={music.src} loop preload="none"
+        onPlay={(event) => { event.currentTarget.volume = music.volume; setIsPlaying(true) }}
+        onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
+        onError={() => { setIsPlaying(false); setMusicError("Music is unavailable. Please try again later.") }} />
       <AnimatePresence>
         {isLoading ? (
           <Loader bride={bride} groom={groom} isDark={isDark} onFinish={() => setIsLoading(false)} />
@@ -127,6 +85,7 @@ function App() {
               onThemeToggle={onThemeToggle}
               isPlaying={isPlaying}
               onMusicToggle={onMusicToggle}
+              musicError={musicError}
             />
 
             <MotionMain className="relative z-10 pt-12 md:pt-12" variants={animations.pageTransition} initial="hidden" animate="visible" exit="exit">
@@ -135,13 +94,17 @@ function App() {
                 groom={groom}
                 dateLabel={weddingInfo.dateLabel}
                 locationLabel={weddingInfo.locationLabel}
-                heading="Where Love Becomes Forever"
+                heading="Celebrate Our Betrothal"
+                timeLabel={weddingInfo.timeLabel}
+                invitationUrl={weddingInfo.invitationUrl}
               />
               <WelcomeSection
                 bride={bride}
                 groom={groom}
                 locationLabel={weddingInfo.locationLabel}
               />
+              <FamilySection />
+              <MissingDetails />
               <CountdownSection targetDate={weddingInfo.targetDate} />
               <StorySection moments={storyMoments} />
               <EventsSection events={events} />

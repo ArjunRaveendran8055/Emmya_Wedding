@@ -1,3 +1,4 @@
+import { getCountdown } from "../data/countdown.js"
 import { motion, useReducedMotion } from "framer-motion"
 import { useAnimationSystem } from "../animations"
 import { useEffect, useMemo, useState } from "react"
@@ -43,18 +44,6 @@ const FloatingHearts = () => {
   )
 }
 
-function getCountdown(targetDate) {
-  const target = new Date(targetDate).getTime()
-  const now = Date.now()
-  const distance = Math.max(target - now, 0)
-
-  return {
-    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((distance / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((distance / (1000 * 60)) % 60),
-    seconds: Math.floor((distance / 1000) % 60),
-  }
-}
 
 function CountdownSection({ targetDate }) {
   const animations = useAnimationSystem()
@@ -99,12 +88,12 @@ function CountdownSection({ targetDate }) {
           <FloatingHearts />
           <SectionTitle
             eyebrow="The Big Day"
-            title="Countdown to Forever"
-            subtitle="Every moment brings us closer to saying I do."
+            title={timeLeft.complete ? "Let Us Celebrate!" : "Countdown to Our Betrothal"}
+            subtitle={timeLeft.complete ? "Our betrothal celebration has begun. Thank you for your love and prayers!" : "Counting the moments until our betrothal celebration."}
           />
         </div>
 
-        <Reveal className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
+        {!timeLeft.complete && <Reveal className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
           {blocks.map((item) => (
             <MotionDiv
               key={item.label}
@@ -148,7 +137,7 @@ function CountdownSection({ targetDate }) {
               </p>
             </MotionDiv>
           ))}
-        </Reveal>
+        </Reveal>}
       </MotionDiv>
     </section>
   )

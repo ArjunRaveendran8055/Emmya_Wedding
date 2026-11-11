@@ -1,16 +1,49 @@
-# React + Vite
+# Emmya & Manu — Betrothal Invitation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite invitation for 14 November 2026, 11:30 AM onwards, at Christ The King Church, Krishnankotta.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+nvm install
+nvm use
+npm install
+npm run dev
+```
 
-## React Compiler
+Node 22 is selected by `.nvmrc`. Run `nvm use` in each new terminal before starting Vite; Node 20.9.0 is unsupported.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm run build
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## Fill in the missing details
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Edit `src/data/weddingContent.js`. The visible “Still to add” checklist is derived from this configuration:
+
+- `storyMoments`: add `{ year, title, description }` entries.
+- `photoSlots`: put new images in `public/images/`, then fill in each slot’s `src` (for example `/images/couple.jpg`) and descriptive `alt`. Add or remove slots as needed. The six supplied photos are already configured; the PDF portrait is the fallback when no photos are supplied.
+- `dressDetails`: add confirmed attire preferences or guest notes as strings.
+- `weddingInfo.contact`: fill in `phone` and/or `email` for family enquiries. These also provide RSVP contact links if there is no response-form URL.
+- `rsvpDetails`: the embedded form posts to FormSubmit and emails `sunnyebin48@gmail.com`. Set `url` to use a different external response form instead.
+
+Completed items disappear from the checklist. Incomplete sections remain visibly labelled; no couple story, dress requirement, RSVP deadline, or reception is assumed.
+
+## RSVP email setup
+
+The RSVP form collects a guest’s name, email, attendance, guest count, and optional message. It submits directly to FormSubmit over HTTPS, which handles verification and confirmation and emails the response to `sunnyebin48@gmail.com`. No email password or API key is needed in this repository. Guest responses pass through FormSubmit; this app does not store a copy.
+
+Before sharing the site, submit the form once from the running website, then open FormSubmit’s activation email in the recipient inbox (check spam too) and confirm the address. Resubmit after activation and verify receipt. Do not assume the initial activation submission was delivered as an RSVP. Normal submissions retain FormSubmit’s CAPTCHA protection. The website does not display its own success message before the provider processes a submission.
+
+See [FormSubmit’s setup instructions](https://formsubmit.co/). No real test email was sent during implementation, so recipient activation and inbox delivery still need to be verified.
+
+## Invitation and directions
+
+The original PDF is in `public/invitations/emmya-manu-betrothal.pdf`. A fallback portrait is rendered from its first page. The gallery uses optimized copies of the six supplied photos, leaving the originals untouched. Directions currently use a labelled Google Maps search for the church because the PDF QR code could not be decoded in the development environment. Replace the venue URLs with a confirmed map location when available.
+
+## Music
+
+“A Quiet Promise” is an original, calm, wordless piano-style instrumental made without third-party samples. Its composition and synthesized recording are dedicated to CC0 1.0; see `public/audio/LICENSE.txt`. Playback begins only when the visitor selects Play.
+
+To regenerate the recording, run `python3 scripts/create-piano.py` from this directory. To replace it, update `music` in the content configuration and include the new recording’s license and attribution.

@@ -59,9 +59,9 @@ function EventsSection({ events }) {
         <div className="relative">
           <FloatingHearts />
           <SectionTitle
-            eyebrow="Wedding Events"
+            eyebrow="Betrothal Celebration"
             title="Program Of The Day"
-            subtitle="A refined timeline for every celebration moment."
+            subtitle="Join us for the betrothal ceremony and share your prayers and blessings."
           />
         </div>
 
@@ -75,7 +75,7 @@ function EventsSection({ events }) {
 
         <div className="mt-14">
           <div className="mx-auto max-w-7xl px-2 md:px-6">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:place-items-center">
+            <div className="grid grid-cols-1 gap-6 justify-items-center">
               {events.map((event, index) => (
                 <Reveal key={event.name}>
                   <MotionDiv
@@ -125,7 +125,7 @@ function EventsSection({ events }) {
                       initial="rest"
                       whileHover="hover"
                     >
-                      View on map
+                      {event.directionsLabel}
                       <span aria-hidden="true">→</span>
                     </MotionA>
                   </MotionDiv>

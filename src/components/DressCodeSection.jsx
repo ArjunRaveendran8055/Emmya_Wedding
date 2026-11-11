@@ -1,8 +1,8 @@
+import ContentPlaceholder from "./ContentPlaceholder"
 import { motion } from "framer-motion"
 import { useAnimationSystem } from "../animations"
 import Reveal from "./Reveal"
 import SectionTitle from "./SectionTitle"
-import { useEffect, useState } from "react"
 
 const MotionLi = motion.li
 
@@ -45,6 +45,13 @@ const FloatingHearts = () => {
 
 function DressCodeSection({ details }) {
   const animations = useAnimationSystem()
+  if (!details.length) return (
+    <section id="details" className="px-4 py-20"><Reveal className="mx-auto max-w-4xl">
+      <SectionTitle eyebrow="Dress guidance & guest notes" title="Preparing to Celebrate" />
+      <ContentPlaceholder label="Dress guidance & guest notes">Attire preferences and any guest guidance from the families will be added here. No dress code has been specified yet.</ContentPlaceholder>
+    </Reveal></section>
+  )
+
 
   return (
     <section
@@ -64,7 +71,7 @@ function DressCodeSection({ details }) {
 
         <Reveal>
           <ul className="space-y-5 text-left text-gold-900 dark:text-gold-200">
-            {details.map((item, idx) => (
+            {details.map((item) => (
               <MotionLi
                 key={item}
                 className="flex items-center gap-4 rounded-2xl border border-gold-500 bg-gradient-to-br from-gold-50 via-ivory-100 to-gold-100 px-6 py-4 shadow-md shadow-gold-200/20 hover:shadow-gold-300/30

@@ -1,3 +1,4 @@
+import ContentPlaceholder from "./ContentPlaceholder"
 import { motion } from "framer-motion"
 import { useAnimationSystem } from "../animations"
 import Reveal from "./Reveal"
@@ -46,6 +47,13 @@ const FloatingHearts = () => {
 
 function StorySection({ moments }) {
   const animations = useAnimationSystem()
+  if (!moments.length) return (
+    <section id="story" className="px-4 py-20"><Reveal className="mx-auto max-w-4xl">
+      <SectionTitle eyebrow="Their story" title="A Story to Share" />
+      <ContentPlaceholder label="Their story">How they met, meaningful milestones, and a personal message from Emmya and Manu will be added here.</ContentPlaceholder>
+    </Reveal></section>
+  )
+
 
   return (
     <section id="story" className="relative overflow-hidden px-4 py-28">

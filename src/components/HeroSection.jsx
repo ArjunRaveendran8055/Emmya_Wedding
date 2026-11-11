@@ -31,7 +31,7 @@ function RoyalOrnament({ style }) {
   )
 }
 
-export default function HeroSection({ bride, groom, dateLabel, locationLabel, heading = "Shubh Vivah Samaroh" }) {
+export default function HeroSection({ bride, groom, dateLabel, locationLabel, timeLabel, invitationUrl, heading = "Celebrate Our Betrothal" }) {
   const reduceMotion = useReducedMotion()
 
   const containerVariants = {
@@ -181,7 +181,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
           </MotionP>
 
           <MotionH1
-            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide px-2 sm:px-4 md:px-8 mt-3 mb-2 text-[2.1rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[2.7rem] xl:text-[3rem] sm:whitespace-nowrap"
+            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide px-2 sm:px-4 md:px-8 mt-3 mb-2 text-[2.1rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[2.7rem] xl:text-[3rem]"
             style={{ fontSize: "clamp(1.6rem, 6vw, 3rem)", letterSpacing: "0.02em", wordSpacing: "0.08em", maxWidth: "900px", width: "100%", margin: "0 auto" }}
             variants={nameVariants}
             >
@@ -211,14 +211,15 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
             className="relative mx-auto mt-1 max-w-2xl text-center font-['Cormorant_Garamond'] text-base sm:text-base md:text-lg lg:text-xl italic leading-relaxed text-stone-600 dark:text-stone-200"
             variants={taglineVariants}
             >
-            We request the honor of your gracious presence to celebrate their sacred union,
-            followed by an evening of joy, music, and blessings.
+            We request the honour of your presence at our betrothal.
+            Your presence and prayers will make our special day even more beautiful.
           </MotionP>
           <MotionDiv className="relative mx-auto mt-6 grid max-w-3xl gap-4 sm:grid-cols-2" variants={ctaVariants}>
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-ivory-100/88 to-ivory-50/80 px-5 py-4 text-center transition-all duration-300 hover:from-ivory-100 hover:to-gold-50/70 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
-              <p className="text-[10px] sm:text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.34em] text-stone-500 dark:text-stone-400">Auspicious Date</p>
-              <p className="mt-2 font-['Cormorant_Garamond'] text-lg sm:text-xl md:text-2xl font-semibold leading-none text-gold-600 dark:text-gold-300">{dateLabel}</p>
+              <p className="text-[10px] sm:text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.34em] text-stone-500 dark:text-stone-400">Betrothal Date</p>
+              <p className="mt-2 font-['Cormorant_Garamond'] text-lg sm:text-xl md:text-2xl font-semibold leading-snug text-gold-600 dark:text-gold-300">{dateLabel}</p>
+              <p className="mt-3 text-sm text-stone-600 dark:text-stone-300">{timeLabel}</p>
             </div>
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white/88 to-ivory-50/85 px-5 py-4 text-center transition-all duration-300 hover:from-white/92 hover:to-ivory-50 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
@@ -231,15 +232,16 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
               href="#events"
               className="inline-flex min-w-[164px] items-center justify-center rounded-full border border-gold-200/70 bg-gradient-to-r from-gold-300 via-gold-200 to-ivory-100 px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-stone-700 transition-all duration-300 hover:border-gold-300/80 hover:from-gold-400 hover:via-gold-300 hover:to-ivory-100 hover:text-stone-800 dark:border-gold-500/35 dark:bg-gradient-to-r dark:from-gold-500 dark:via-gold-400 dark:to-gold-300 dark:text-stone-900"
             >
-              View Ceremonies
+              View Ceremony
             </a>
             <a
               href="#rsvp"
               className="inline-flex min-w-[164px] items-center justify-center rounded-full border border-gold-200/60 bg-white/92 px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-gold-700 transition-all duration-300 hover:border-gold-300/75 hover:bg-ivory-50 dark:border-stone-700/55 dark:bg-stone-800/76 dark:text-gold-300 dark:hover:border-gold-500/45 dark:hover:bg-stone-700"
             >
-              Send Blessings
+              RSVP Details
             </a>
           </MotionDiv>
+          <a href={invitationUrl} download className="mx-auto inline-flex rounded-full border border-gold-300 bg-white/70 px-6 py-3 text-sm font-semibold text-gold-700 dark:bg-stone-800 dark:text-gold-300">Download Invitation (PDF)</a>
         </MotionDiv>
       </div>
     </MotionSection>

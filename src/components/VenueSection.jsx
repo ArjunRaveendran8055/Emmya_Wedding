@@ -56,8 +56,8 @@ function VenueSection({ venues }) {
           <FloatingHearts />
           <SectionTitle
             eyebrow="Venue"
-            title="The Imperial Gardens"
-            subtitle="A grand setting in the heart of Ernakulam."
+            title="Where We Gather"
+            subtitle={activeVenue.title}
           />
         </div>
 
@@ -118,9 +118,9 @@ function VenueSection({ venues }) {
               variants={animations.buttonHover}
               initial="rest"
               whileHover="hover"
-              aria-label="Open directions"
+              aria-label={activeVenue.directionsLabel}
             >
-              Get Directions
+              {activeVenue.directionsLabel}
               <span aria-hidden="true">→</span>
             </MotionA>
           </MotionDiv>
