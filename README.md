@@ -18,6 +18,12 @@ npm run build
 npm run preview
 ```
 
+## Deploy on Vercel
+
+Import `ArjunRaveendran8055/Emmya_Wedding` at https://vercel.com/new. Use the repository root (`./`), the Vite framework preset, `npm run build` for the build command, and `dist` for the output directory. `package.json` pins Node 22 and `vercel.json` supplies the build settings. No environment variables are required.
+
+Use `master` as the production branch. Once the GitHub repository is connected, pushes to that branch trigger production deployments. After deployment, verify the photos, music, PDF download, directions, and RSVP from the public URL. FormSubmit recipient activation is still required for RSVP email delivery.
+
 ## Fill in the missing details
 
 Edit `src/data/weddingContent.js`. The visible “Still to add” checklist is derived from this configuration:
