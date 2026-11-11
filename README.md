@@ -50,6 +50,6 @@ The original PDF is in `public/invitations/emmya-manu-betrothal.pdf`. A fallback
 
 ## Music
 
-“A Quiet Promise” is an original, calm, wordless piano-style instrumental made without third-party samples. Its composition and synthesized recording are dedicated to CC0 1.0; see `public/audio/LICENSE.txt`. Playback begins only when the visitor selects Play.
+“A Quiet Promise” is an original, calm, wordless piano-style instrumental made without third-party samples. Its composition and synthesized recording are dedicated to CC0 1.0; see `public/audio/LICENSE.txt`. The site attempts playback on load at a soft volume. If the browser blocks audible autoplay, playback is retried on a click/tap or key press. The music button always allows visitors to pause or resume; pausing disables further automatic starts for that visit.
 
 To regenerate the recording, run `python3 scripts/create-piano.py` from this directory. To replace it, update `music` in the content configuration and include the new recording’s license and attribution.

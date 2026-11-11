@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
+import { startBackgroundMusic } from "./backgroundMusic"
 import { useAnimationSystem } from "./animations"
 import FamilySection from "./components/FamilySection"
 import MissingDetails from "./components/MissingDetails"
@@ -40,6 +41,13 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [musicError, setMusicError] = useState("")
   const audioRef = useRef(null)
+  const musicControllerRef = useRef(null)
+
+  useEffect(() => {
+    const controller = startBackgroundMusic(audioRef.current, document, music.volume)
+    musicControllerRef.current = controller
+    return () => controller.dispose()
+  }, [])
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark)
@@ -50,6 +58,8 @@ function App() {
   const onMusicToggle = async () => {
     const audio = audioRef.current
     if (!audio) return
+    // Once a visitor uses the music button, only that button controls playback.
+    musicControllerRef.current?.stopAutomaticStart()
     setMusicError("")
     if (!audio.paused) {
       audio.pause()
@@ -67,8 +77,8 @@ function App() {
 
   return (
     <>
-      <audio ref={audioRef} src={music.src} loop preload="none"
-        onPlay={(event) => { event.currentTarget.volume = music.volume; setIsPlaying(true) }}
+      <audio ref={audioRef} src={music.src} loop preload="auto"
+        onPlaying={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
         onError={() => { setIsPlaying(false); setMusicError("Music is unavailable. Please try again later.") }} />
       <AnimatePresence>

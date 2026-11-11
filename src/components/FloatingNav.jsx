@@ -33,6 +33,7 @@ function FloatingNav({ isDark, onThemeToggle, isPlaying, onMusicToggle, musicErr
         <div className="flex items-center gap-2">
           <button
             type="button"
+            data-music-toggle
             onClick={onMusicToggle}
             className="relative grid h-10 w-10 place-items-center rounded-full text-stone-700 transition-all duration-200 hover:bg-gradient-to-br hover:from-gold-100/60 hover:to-gold-50/50 hover:text-gold-700 dark:text-stone-200 dark:hover:bg-gold-500/18 dark:hover:text-gold-300"
             aria-pressed={isPlaying}
