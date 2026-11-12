@@ -234,12 +234,6 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, ti
             >
               View Ceremony
             </a>
-            <a
-              href="#rsvp"
-              className="inline-flex min-w-[164px] items-center justify-center rounded-full border border-gold-200/60 bg-white/92 px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-gold-700 transition-all duration-300 hover:border-gold-300/75 hover:bg-ivory-50 dark:border-stone-700/55 dark:bg-stone-800/76 dark:text-gold-300 dark:hover:border-gold-500/45 dark:hover:bg-stone-700"
-            >
-              RSVP Details
-            </a>
           </MotionDiv>
           <a href={invitationUrl} download className="mx-auto inline-flex rounded-full border border-gold-300 bg-white/70 px-6 py-3 text-sm font-semibold text-gold-700 dark:bg-stone-800 dark:text-gold-300">Download Invitation (PDF)</a>
         </MotionDiv>

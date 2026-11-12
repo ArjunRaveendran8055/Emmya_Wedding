@@ -35,15 +35,6 @@ export const events = [{
 // Supply { year, title, description } objects to replace the story placeholder.
 export const storyMoments = []
 export const dressDetails = []
-// FormSubmit emails the family after the recipient activates its confirmation email.
-// Keep url empty to use the embedded form; set url to use another external form.
-export const rsvpDetails = {
-  url: "",
-  label: "Respond to the invitation",
-  submitUrl: `https://formsubmit.co/${weddingInfo.contact.email}`,
-  subject: "New RSVP — Emmya & Manu’s Betrothal",
-}
-
 export const portrait = {
   src: "/images/emmya-manu-invitation.jpg",
   alt: "Manu Antony and Emmya Sunny, from their betrothal invitation",
@@ -81,6 +72,5 @@ export const missingDetails = [
   { id: "story", label: "Their story", description: "Add how they met and the moments they would like to share.", missing: storyMoments.length === 0 },
   { id: "gallery", label: "Additional photos", description: "Add the couple’s new photographs to the labelled photo slots.", missing: photoSlots.some((photo) => !photo.src) },
   { id: "details", label: "Dress guidance", description: "Add any attire preferences or guest notes confirmed by the families.", missing: dressDetails.length === 0 },
-  { id: "rsvp", label: "RSVP details", description: "Add an RSVP contact or a link to a working response form.", missing: !rsvpDetails.url && !weddingInfo.contact.phone && !weddingInfo.contact.email },
   { id: "contact", label: "Family contact", description: "Add a phone number or email for guest enquiries.", missing: !weddingInfo.contact.phone && !weddingInfo.contact.email },
 ].filter((item) => item.missing)

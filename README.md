@@ -22,7 +22,7 @@ npm run preview
 
 Import `ArjunRaveendran8055/Emmya_Wedding` at https://vercel.com/new. Use the repository root (`./`), the Vite framework preset, `npm run build` for the build command, and `dist` for the output directory. `package.json` pins Node 22 and `vercel.json` supplies the build settings. No environment variables are required.
 
-Use `master` as the production branch. Once the GitHub repository is connected, pushes to that branch trigger production deployments. After deployment, verify the photos, music, PDF download, directions, and RSVP from the public URL. FormSubmit recipient activation is still required for RSVP email delivery.
+Use `master` as the production branch. Once the GitHub repository is connected, pushes to that branch trigger production deployments. After deployment, verify the photos, music, PDF download, and directions from the public URL.
 
 ## Sharing the invitation
 
@@ -37,20 +37,11 @@ Existing WhatsApp messages may retain the old preview. Share a new message after
 Edit `src/data/weddingContent.js`. The visible “Still to add” checklist is derived from this configuration:
 
 - `storyMoments`: add `{ year, title, description }` entries.
-- `photoSlots`: put new images in `public/images/`, then fill in each slot’s `src` (for example `/images/couple.jpg`) and descriptive `alt`. Add or remove slots as needed. The six supplied photos are already configured; the PDF portrait is the fallback when no photos are supplied.
+- `photoSlots`: put new images in `public/images/`, then fill in each slot’s `src` (for example `/images/couple.jpg`) and descriptive `alt`. Add or remove slots as needed. The fourteen supplied photos are already configured; the PDF portrait is the fallback when no photos are supplied.
 - `dressDetails`: add confirmed attire preferences or guest notes as strings.
-- `weddingInfo.contact`: fill in `phone` and/or `email` for family enquiries. These also provide RSVP contact links if there is no response-form URL.
-- `rsvpDetails`: the embedded form posts to FormSubmit and emails `sunnyebin48@gmail.com`. Set `url` to use a different external response form instead.
+- `weddingInfo.contact`: fill in `phone` and/or `email` for family enquiries.
 
-Completed items disappear from the checklist. Incomplete sections remain visibly labelled; no couple story, dress requirement, RSVP deadline, or reception is assumed.
-
-## RSVP email setup
-
-The RSVP form collects a guest’s name, email, attendance, guest count, and optional message. It submits directly to FormSubmit over HTTPS, which handles verification and confirmation and emails the response to `sunnyebin48@gmail.com`. No email password or API key is needed in this repository. Guest responses pass through FormSubmit; this app does not store a copy.
-
-Before sharing the site, submit the form once from the running website, then open FormSubmit’s activation email in the recipient inbox (check spam too) and confirm the address. Resubmit after activation and verify receipt. Do not assume the initial activation submission was delivered as an RSVP. Normal submissions retain FormSubmit’s CAPTCHA protection. The website does not display its own success message before the provider processes a submission.
-
-See [FormSubmit’s setup instructions](https://formsubmit.co/). No real test email was sent during implementation, so recipient activation and inbox delivery still need to be verified.
+Completed items disappear from the checklist. Incomplete sections remain visibly labelled; no couple story, dress requirement, reception is assumed.
 
 ## Invitation and directions
 

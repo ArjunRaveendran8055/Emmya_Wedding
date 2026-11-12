@@ -15,7 +15,6 @@ import GallerySection from "./components/GallerySection"
 import HeroSection from "./components/HeroSection"
 import Loader from "./components/Loader"
 import WelcomeSection from "./components/WelcomeSection"
-import RSVPSection from "./components/RSVPSection"
 import StorySection from "./components/StorySection"
 import VenueSection from "./components/VenueSection"
 import {
@@ -120,7 +119,6 @@ function App() {
               <EventsSection events={events} />
               <GallerySection images={galleryImages} bride={bride} groom={groom} />
               <CelebrationsVibeSection images={galleryImages} bride={bride} groom={groom} />
-              <RSVPSection />
               <VenueSection venues={weddingInfo.venues} />
               <DressCodeSection details={dressDetails} />
             </MotionMain>
