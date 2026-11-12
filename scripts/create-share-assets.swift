@@ -1,4 +1,4 @@
-// Render the invitation's share card and icons using existing photos and native type.
+ori// Render the invitation's share card and icons using existing photos and native type.
 // Run from the repository root: swift scripts/create-share-assets.swift
 import AppKit
 

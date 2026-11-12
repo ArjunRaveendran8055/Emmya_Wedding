@@ -57,13 +57,21 @@ export const photoSlots = [
   { id: "hills", label: "Among the hills", src: "/images/emmya-manu-01.jpg", alt: "Emmya and Manu together against misty green hills", position: "50% 70%" },
   { id: "lakeside", label: "Hand in hand", src: "/images/emmya-manu-02.jpg", alt: "Emmya and Manu holding hands by the lake", position: "50% 65%" },
   { id: "memory", label: "By the water", src: "/images/emmya-manu-03.jpg", alt: "Emmya and Manu sitting together beside the lake", position: "50% 65%" },
+  { id: "memory-07", label: "More memories", src: "/images/emmya-manu-07.jpg", alt: "Additional wedding gallery photograph 1" },
+  { id: "memory-08", label: "More memories", src: "/images/emmya-manu-08.jpg", alt: "Additional wedding gallery photograph 2" },
+  { id: "memory-09", label: "More memories", src: "/images/emmya-manu-09.jpg", alt: "Additional wedding gallery photograph 3" },
+  { id: "memory-10", label: "More memories", src: "/images/emmya-manu-10.jpg", alt: "Additional wedding gallery photograph 4" },
+  { id: "memory-11", label: "More memories", src: "/images/emmya-manu-11.jpg", alt: "Additional wedding gallery photograph 5" },
+  { id: "memory-12", label: "More memories", src: "/images/emmya-manu-12.jpg", alt: "Additional wedding gallery photograph 6" },
+  { id: "memory-13", label: "More memories", src: "/images/emmya-manu-13.jpg", alt: "Additional wedding gallery photograph 7" },
+  { id: "memory-14", label: "More memories", src: "/images/emmya-manu-14.jpg", alt: "Additional wedding gallery photograph 8" },
 ]
 const suppliedPhotos = photoSlots.filter((photo) => photo.src)
 export const galleryImages = suppliedPhotos.length ? suppliedPhotos : [portrait]
 
 export const music = {
-  src: "/audio/a-quiet-promise.wav",
-  title: "A Quiet Promise",
+  src: "/audio/always-with-you.wav",
+  title: "Always, With You",
   credit: "Original synthesized piano instrumental, created for this invitation. CC0 1.0.",
   licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
   volume: 0.3,
